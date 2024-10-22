@@ -14,7 +14,8 @@ type TextArrayConfigProps = {
 }
 
 export const TextArray = ({ctx, linkedTextInput, placeholder}: TextArrayProps) => {
-  const [words, setWords] = useState<{label: string, value: string}[]>([]);
+  const initial = get(ctx.formValues, ctx.fieldPath);
+  const [words, setWords] = useState<{label: string, value: string}[]>(JSON.parse(initial).map(itm => ({value: itm, label: itm})));
 
   let options = [] as {label: string, value: string}[];
   if(linkedTextInput) {
